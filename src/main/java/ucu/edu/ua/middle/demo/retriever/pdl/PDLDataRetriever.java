@@ -5,10 +5,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ucu.edu.ua.middle.demo.retriever.DataRetriever;
+import ucu.edu.ua.middle.demo.allData.AllData;
+import ucu.edu.ua.middle.demo.retriever.BaseRetriever;
 
-@Service
-public class PDLDataRetriever implements DataRetriever {
+public class PDLDataRetriever extends BaseRetriever {
 
     private final String PDL_URL = "https://api.peopledatalabs.com/v5/company/search";
     private final String KEY_HEADER_NAME = "X-API-Key";
@@ -18,7 +18,7 @@ public class PDLDataRetriever implements DataRetriever {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Override
-    public String getData(String name) {
+    public void getData(String name, AllData allData) {
         String url = PDL_URL + "?sql=" + String.format(SQL_TEMPLATE, name);
 
         HttpHeaders headers = new HttpHeaders();
@@ -28,7 +28,34 @@ public class PDLDataRetriever implements DataRetriever {
 
         PDLResponse exchange = restTemplate.exchange(url, HttpMethod.GET, requestEntity, PDLResponse.class).getBody();
 
-        return "";
+        if (allData.getName() == null){
+            allData.setName(exchange.getData().get(0).getName());
+        }
+        if (allData.getTwitter() == null){
+            allData.setTwitter(exchange.getData().get(0).getTwitter_url());
+        }
+        if (allData.getFacebook() == null){
+            allData.setFacebook(exchange.getData().get(0).getFacebook_url());
+        }
+//        if (allData.getLogo() == null){
+//         allData.getLogo(exchange.getData().get(0).getName());
+//        }
+//        if (allData.getIcon() == null){
+//         allData.getIcon(exchange.getData().get(0).getName());
+//        }
+        if (allData.getSize() == null){
+            allData.setSize(exchange.getData().get(0).getSize());
+        }
+        if (allData.getEmployee_count() == null){
+            allData.setEmployee_count(exchange.getData().get(0).getEmployee_count());
+        }
+        if (allData.getAddress() == null){
+            allData.setAddress(exchange.getData().get(0).getLocation().getStreet_address());
+        }
+
+        if (next != null) {
+            next.getData(name, allData);
+        }
     }
 
 }
