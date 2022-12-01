@@ -6,13 +6,13 @@ import ucu.edu.ua.middle.demo.DemoRepository.DemoRepository;
 import ucu.edu.ua.middle.demo.allData.AllData;
 import ucu.edu.ua.middle.demo.retriever.DataRetriever;
 import ucu.edu.ua.middle.demo.retriever.bf.BrandFetchRetriever;
+import ucu.edu.ua.middle.demo.retriever.db.DBRetriever;
 import ucu.edu.ua.middle.demo.retriever.pdl.PDLDataRetriever;
 
 import java.util.List;
 
 @Component
 public class DemoService {
-
     @Autowired
     private DemoRepository demoRepository;
 
@@ -20,12 +20,14 @@ public class DemoService {
 
         AllData allData = new AllData();
 
-//        DataRetriever dbRetriever = new DBRetriever();
+        DataRetriever dbRetriever = new DBRetriever();
         DataRetriever pdlRetriever = new PDLDataRetriever();
         DataRetriever brandFetchRetriever = new BrandFetchRetriever();
 
+        dbRetriever.setNext(pdlRetriever);
         pdlRetriever.setNext(brandFetchRetriever);
-        pdlRetriever.getData(infoRequest, allData);
+
+        dbRetriever.getData(infoRequest, allData);
 
         demoRepository.save(allData);
 

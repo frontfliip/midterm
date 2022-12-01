@@ -16,6 +16,7 @@ public class AllData {
     @GeneratedValue
     @Id
     private int id;
+    private String domain;
     private String name;
     private String twitter;
     private String facebook;

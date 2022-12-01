@@ -30,6 +30,9 @@ public class PDLDataRetriever extends BaseRetriever {
         if (allData.getName() == null){
             allData.setName(exchange.getData().get(0).getName());
         }
+        if (allData.getDomain() == null){
+            allData.setDomain(name);
+        }
         if (allData.getTwitter() == null){
             allData.setTwitter(exchange.getData().get(0).getTwitter_url());
         }
@@ -45,7 +48,6 @@ public class PDLDataRetriever extends BaseRetriever {
         if (allData.getAddress() == null){
             allData.setAddress(exchange.getData().get(0).getLocation().getStreet_address());
         }
-
         if (next != null) {
             next.getData(name, allData);
         }
