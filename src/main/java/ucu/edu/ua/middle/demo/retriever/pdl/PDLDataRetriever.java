@@ -3,7 +3,6 @@ package ucu.edu.ua.middle.demo.retriever.pdl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ucu.edu.ua.middle.demo.allData.AllData;
 import ucu.edu.ua.middle.demo.retriever.BaseRetriever;
@@ -37,12 +36,6 @@ public class PDLDataRetriever extends BaseRetriever {
         if (allData.getFacebook() == null){
             allData.setFacebook(exchange.getData().get(0).getFacebook_url());
         }
-//        if (allData.getLogo() == null){
-//         allData.getLogo(exchange.getData().get(0).getName());
-//        }
-//        if (allData.getIcon() == null){
-//         allData.getIcon(exchange.getData().get(0).getName());
-//        }
         if (allData.getSize() == null){
             allData.setSize(exchange.getData().get(0).getSize());
         }

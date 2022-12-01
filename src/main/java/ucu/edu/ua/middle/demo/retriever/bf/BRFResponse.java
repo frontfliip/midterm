@@ -12,27 +12,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BRFResponse {
+    private String facebook;
+    private String twitter;
+    private String logo;
+    private String icon;
     private String name;
-    private List<Link> links;
-    private List<Logo> logos;
 }
 
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-class Link {
-    private String url;
-}
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-class Logo {
-    private String src;
-}
+
 
 
 

@@ -36,7 +36,6 @@ class Data {
 @NoArgsConstructor
 class Location {
     private String street_address;
-    private String address_line_2;
 }
 
 

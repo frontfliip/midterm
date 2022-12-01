@@ -2,6 +2,7 @@ package ucu.edu.ua.middle.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ucu.edu.ua.middle.demo.DemoRepository.DemoRepository;
 import ucu.edu.ua.middle.demo.allData.AllData;
 import ucu.edu.ua.middle.demo.retriever.DataRetriever;
 import ucu.edu.ua.middle.demo.retriever.bf.BrandFetchRetriever;
@@ -12,6 +13,9 @@ import java.util.List;
 @Component
 public class DemoService {
 
+    @Autowired
+    private DemoRepository demoRepository;
+
     public AllData getInfo(String infoRequest) {
 
         AllData allData = new AllData();
@@ -20,9 +24,10 @@ public class DemoService {
         DataRetriever pdlRetriever = new PDLDataRetriever();
         DataRetriever brandFetchRetriever = new BrandFetchRetriever();
 
-        brandFetchRetriever.setNext(pdlRetriever);
+        pdlRetriever.setNext(brandFetchRetriever);
+        pdlRetriever.getData(infoRequest, allData);
 
-        brandFetchRetriever.getData(infoRequest, allData);
+        demoRepository.save(allData);
 
         return allData;
     }
