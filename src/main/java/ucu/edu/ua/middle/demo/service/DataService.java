@@ -9,6 +9,8 @@ import ucu.edu.ua.middle.demo.retriever.bf.BrandFetchRetriever;
 import ucu.edu.ua.middle.demo.retriever.db.DBRetriever;
 import ucu.edu.ua.middle.demo.retriever.pdl.PDLDataRetriever;
 
+import java.util.List;
+
 @Component
 public class DataService {
     @Autowired
@@ -32,5 +34,9 @@ public class DataService {
         }
 
         return allData;
+    }
+
+    public List<AllData> getAll() {
+        return dataRepository.findAll();
     }
 }
