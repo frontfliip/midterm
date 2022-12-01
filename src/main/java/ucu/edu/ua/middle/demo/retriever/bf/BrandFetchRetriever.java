@@ -5,15 +5,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.web.client.RestTemplate;
 import ucu.edu.ua.middle.demo.allData.AllData;
 import ucu.edu.ua.middle.demo.retriever.BaseRetriever;
-import ucu.edu.ua.middle.demo.retriever.pdl.PDLResponse;
-
-
 
 public class BrandFetchRetriever extends BaseRetriever {
 
@@ -72,6 +65,5 @@ public class BrandFetchRetriever extends BaseRetriever {
         if (next != null) {
             next.getData(name, allData);
         }
-
     }
 }

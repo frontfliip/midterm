@@ -1,6 +1,5 @@
 package ucu.edu.ua.middle.demo.retriever;
 
-
 import ucu.edu.ua.middle.demo.allData.AllData;
 
 public abstract class BaseRetriever implements DataRetriever {
@@ -10,8 +9,6 @@ public abstract class BaseRetriever implements DataRetriever {
     public void setNext(DataRetriever dataRetriever) {
         this.next = dataRetriever;
     }
-
-
     protected boolean isFull(AllData allData){
         if (allData.getName() == null){
             return false;
