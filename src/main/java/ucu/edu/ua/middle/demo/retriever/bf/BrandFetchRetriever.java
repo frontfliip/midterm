@@ -17,13 +17,11 @@ import ucu.edu.ua.middle.demo.retriever.pdl.PDLResponse;
 
 public class BrandFetchRetriever extends BaseRetriever {
 
-    private final String BRF_URL = "https://api.brandfetch.io/v2/brands/%s";
-    private final String KEY_HEADER_NAME = "Authorization";
-    private final String KEY_HEADER_VALUE = "Bearer tVX/P71ZtF+yeJ+JG+YWDf0J0KwDuUCgBISZ0z1nyj4=";
-
-    private final RestTemplate restTemplate = new RestTemplate();
     @Override
     public void getData(String name, AllData allData) {
+        if (isFull(allData)){
+            return;
+        }
         BRFResponse brfResponse = new BRFResponse();
         Unirest.setTimeouts(0, 0);
         try {

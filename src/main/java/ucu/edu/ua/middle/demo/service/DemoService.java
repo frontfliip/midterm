@@ -20,7 +20,7 @@ public class DemoService {
 
         AllData allData = new AllData();
 
-        DataRetriever dbRetriever = new DBRetriever();
+        DataRetriever dbRetriever = new DBRetriever(demoRepository);
         DataRetriever pdlRetriever = new PDLDataRetriever();
         DataRetriever brandFetchRetriever = new BrandFetchRetriever();
 
@@ -29,7 +29,9 @@ public class DemoService {
 
         dbRetriever.getData(infoRequest, allData);
 
-        demoRepository.save(allData);
+        if (demoRepository.getByDomain(infoRequest) == null){
+            demoRepository.save(allData);
+        }
 
         return allData;
     }

@@ -18,6 +18,9 @@ public class PDLDataRetriever extends BaseRetriever {
 
     @Override
     public void getData(String name, AllData allData) {
+        if (isFull(allData)){
+            return;
+        }
         String url = PDL_URL + "?sql=" + String.format(SQL_TEMPLATE, name);
 
         HttpHeaders headers = new HttpHeaders();
