@@ -24,4 +24,9 @@ public class DataController {
     public List<AllData> getAll(){
         return dataService.getAll();
     }
+
+    @PostMapping(path = "add")
+    public void add(@RequestBody AllData info){
+        dataService.add(info);
+    }
 }

@@ -39,4 +39,11 @@ public class DataService {
     public List<AllData> getAll() {
         return dataRepository.findAll();
     }
+
+    public void add(AllData info) {
+        if (dataRepository.getByDomain(info.getDomain()) == null){
+            dataRepository.save(info);
+        }
+
+    }
 }
