@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataFinder</title>
+</head>
+<body style="background-image: url('https://www.meme-arsenal.com/memes/ff77dace71d6a3141cb12bcc1891f454.jpg');">
+<h1>DataFinder</h1>
+<form>
+    <form id="contact-form">
+        <input type="text" id="domain" name="domain">
+        <a href="#" id="submit">Submit</a>
+    </form>
+
+    <pre style="color: azure" id="result"></pre>
+</form>
+</body>
+
+<script>
+    document.getElementById("submit").onclick = function () {
+        let data = {"name": document.getElementById("domain").value};
+        fetch("/company/search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json()).then(x => document.getElementById("result").innerText = JSON.stringify(x, null, 2));
+    }
+</script>
+</html>
