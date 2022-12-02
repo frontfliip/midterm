@@ -1,0 +1,25 @@
+GET http://localhost:8080/company/getAll
+
+###
+POST http://localhost:8080/company/search
+Content-Type: application/json
+
+{
+  "name": "nike.com"
+}
+###
+POST http://localhost:8080/company/add
+Content-Type: application/json
+
+{
+  "domain": "google.com",
+  "name": "google",
+  "twitter": "twitter.com/google",
+  "facebook": "facebook.com/google",
+  "logo": "https://asset.brandfetch.io/id6O2oGzv-/idP6g0Ep4y.svg",
+  "icon": "https://asset.brandfetch.io/id6O2oGzv-/idNEgS9h8q.jpeg",
+  "size": "10001+",
+  "employee_count": "329669",
+  "address": "1600 amphitheatre parkway"
+}
+
